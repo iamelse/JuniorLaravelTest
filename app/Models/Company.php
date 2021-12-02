@@ -13,6 +13,6 @@ class Company extends Model
 
     public function has_many_employees()
     {
-        $this->hasMany(Employee::class);
+        return $this->hasMany(Employee::class);
     }
 }
