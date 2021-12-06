@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -33,7 +34,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('company.create');
     }
 
     /**
@@ -44,7 +45,20 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'      => 'required|max:255',
+            'email'     => 'required|max:255',
+            'image'     => 'image|file|max:1024',
+            'website'   => 'required|max:255'
+        ]);
+
+        if($request->file('image')) {
+            $validated['image'] = $request->file('image')->store('company_logo');
+        }
+
+        Company::create($validated);
+
+        return redirect()->back();
     }
 
     /**
@@ -89,6 +103,10 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $company = Company::find($id);
+        
+        $company->delete();
+        
+        return redirect('/dashboard/posts')->with('success', 'Post has been deleted!');
     }
 }

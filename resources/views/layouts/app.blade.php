@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Box Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <div id="app">
@@ -60,6 +63,9 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('company.list') }}">
                                         {{ __('Company List') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('company.create') }}">
+                                        {{ __('New Company') }}
                                     </a>
                                 </div>
                             </li>

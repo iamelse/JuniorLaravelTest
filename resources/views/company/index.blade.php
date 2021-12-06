@@ -17,6 +17,7 @@
                               <th scope="col">Company Email</th>
                               <th scope="col">Logo</th>
                               <th scope="col">Company Website</th>
+                              <th scope="col">Action</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -26,9 +27,25 @@
                                 <td>{{ $company->name }}</td>
                                 <td>{{ $company->email }}</td>
                                 <td>
-                                    <img src="{{ $company->logo }}" class="img img-fluid" alt="Company Logo" style="height: 30px; width:30px;">
+                                  @if ($company->image == NULL)
+                                    <img src="https://getbootstrap.com//docs/5.0/assets/brand/bootstrap-logo.svg" class="img img-fluid" alt="Company Logo" style="width:30px;">
+                                  @else
+                                    <img src="http://127.0.0.1:8000/storage/{{ $company->image }}" class="img img-fluid" alt="Company Logo" style="height: 30px; width:30px;">
+                                  @endif
                                 </td>
                                 <td>{{ $company->website }}</td>
+                                <td>
+                                  <div class="col">
+                                    <a class="btn btn-sm" href="/dashboard/posts/"><i class='bx bxs-zoom-in text-primary bx-xs'></i></a>
+                                    <a class="btn btn-sm" href="/dashboard/posts//edit"><i class='bx bxs-pencil text-warning bx-xs'></i></a>
+                                    <form action="/company/delete/{id}" class="d-inline" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm" type="submit" onclick="return confirm('Are you sure want to delete this?')"><i class='bx bxs-trash text-danger bx-xs'></i></button>
+                                    </form>
+                                  </div>
+
+                                </td>
                               </tr>
                             @endforeach
                           </tbody>
