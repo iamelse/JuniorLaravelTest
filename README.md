@@ -20,3 +20,18 @@ https://laraveldaily.com/test-junior-laravel-developer-sample-project/
 * Email notification: send email whenever new company is entered (use Mailgun or Mailtrap) [ x ]
 * Make the project multi-language (using resources/lang folder) √
 * Basic testing with phpunit (I know some would argue it should be the basics, but I disagree) [ x ]
+
+## Installation Guide
+Open your terminal and follow this command
+* Upgrade Composer "composer upgrade"
+* Copy .env file "cp .env.example .env" and setup your database here
+* Generating your app key "php artisan key:generate"
+* Migrate your database app "php artisan migrate"
+* Generating a user "php artisan db:seed UserSeeder"
+* Dont forget to link storage with "php artisan storage:link"
+
+Generating Dummy Data
+if you want generate dummy data just use "php artisan migrate:fresh --seed" then run "php artisan db:seed UserSeeder" again
+
+Image Not Showing
+if this happen, you need change file system driver to public in .env file
