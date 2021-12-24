@@ -58,7 +58,7 @@ class CompanyController extends Controller
 
         Company::create($validated);
 
-        return redirect()->back();
+        return redirect('/company')->with('success', '<strong>Success!</strong> New post has been created!');
     }
 
     /**
@@ -107,6 +107,6 @@ class CompanyController extends Controller
         
         $company->delete();
         
-        return redirect('/dashboard/posts')->with('success', 'Post has been deleted!');
+        return redirect('/company')->with('success', '<strong>Success!</strong> post has been deleted!');
     }
 }

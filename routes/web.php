@@ -28,6 +28,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/company', [CompanyController::class, 'index'])->name('company.list');
 Route::get('/company/create', [CompanyController::class, 'create'])->name('company.create');
 Route::post('/company/store', [CompanyController::class, 'store'])->name('company.store');
-Route::delete('/company/delete/{id}', [CompanyController::class, 'destroy']);
+Route::delete('/company/delete/{id}', [CompanyController::class, 'destroy'])->name('company.delete');
 
 Route::get('/employee', [EmployeeController::class, 'index'])->name('employee.list');
