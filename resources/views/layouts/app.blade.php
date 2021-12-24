@@ -108,4 +108,19 @@
         </main>
     </div>
 </body>
+<script>
+    function previewImage() {
+        const image = document.querySelector('#imagePrev');
+        const imagePreview = document.querySelector('.img-preview')
+
+        imagePreview.style.display = 'bloc';
+        
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imagePreview.src = oFREvent.target.result;
+        }
+    }
+</script>
 </html>

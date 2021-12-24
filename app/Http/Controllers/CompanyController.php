@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
@@ -48,7 +47,7 @@ class CompanyController extends Controller
         $validated = $request->validate([
             'name'      => 'required|max:255',
             'email'     => 'required|max:255',
-            'image'     => 'image|file|max:1024',
+            'image'     => 'required|image|file|max:1024',
             'website'   => 'required|max:255'
         ]);
 
@@ -69,7 +68,10 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        $company = Company::find($id);
+        return view('company.show', [
+            'company' => $company
+        ]);
     }
 
     /**
@@ -80,7 +82,10 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::find($id);
+        return view('company.edit', [
+            'company' => $company
+        ]);
     }
 
     /**
@@ -92,7 +97,22 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name'      => 'required|max:255',
+            'email'     => 'required|max:255',
+            'image'     => 'image|file|max:1024',
+            'website'   => 'required|max:255'
+        ]);
+
+        if($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validated['image'] = $request->file('image')->store('company_logo');
+        }
+
+        Company::where('id', $id)->update($validated);
+        return redirect('/company')->with('success', '<strong>Success!</strong> Post has been updated!');
     }
 
     /**
@@ -104,6 +124,10 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         $company = Company::find($id);
+        
+        if($company->image) {
+            Storage::delete($company->image);
+        }
         
         $company->delete();
         

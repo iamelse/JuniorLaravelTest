@@ -44,8 +44,8 @@
                                 <td>{{ $company->website }}</td>
                                 <td>
                                   <div class="col">
-                                    <a class="btn btn-sm" href="/dashboard/posts/"><i class='bx bxs-zoom-in text-primary bx-xs'></i></a>
-                                    <a class="btn btn-sm" href="/dashboard/posts//edit"><i class='bx bxs-pencil text-warning bx-xs'></i></a>
+                                    <a class="btn btn-sm" href="{{ route('company.show', $company->id) }}"><i class='bx bxs-zoom-in text-primary bx-xs'></i></a>
+                                    <a class="btn btn-sm" href="{{ route('company.edit', $company->id) }}"><i class='bx bxs-pencil text-warning bx-xs'></i></a>
                                     <form action="{{ route('company.delete', $company->id) }}" class="d-inline" method="POST">
                                         @csrf
                                         @method('DELETE')

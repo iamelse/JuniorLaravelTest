@@ -5,27 +5,33 @@
     <div class="row justify-content-center">
         <div class="col-md-7">
             <div class="card">
-                <div class="card-header">{{ __('New Company') }}</div>
-                    <form action="/company/store" method="POST" enctype="multipart/form-data">
+                <div class="card-header">{{ __('Update Company') }}</div>
+                    <form action="/company/update/{{ $company->id }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="m-4">
                             <div class="mb-3">
                                 <label class="form-label">Company Name</label>
-                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Tech. Inc">
+                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $company->name }}">
                                 @error('name')
                                     <div class="text text-danger fs-6 mx-2 mt-2">* {{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Company Email</label>
-                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="companyname@example.com">
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ $company->email }}">
                                 @error('email')
                                     <div class="text text-danger fs-6 mx-2 mt-2">* {{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Company Logo</label>
-                                <img src="" class="img-fluid img-preview mb-2 d-block" width="100">
+                                <input type="hidden" name="oldImage" value="{{ $company->image }}"> 
+                                @if ($company->image)
+                                    <img src="{{ asset('storage/' . $company->image) }}" class="img-fluid img-preview mb-2 d-block" width="100">
+                                @else
+                                    <img class="img-fluid img-preview mb-2 d-block" width="100">
+                                @endif
                                 <input class="form-control @error('image') is-invalid @enderror" name="image" type="file" id="imagePrev" onchange="previewImage()">
                                 @error('image')
                                     <div class="text text-danger fs-6 mx-2 mt-2">* {{ $message }}</div>
@@ -33,14 +39,14 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Company Website</label>
-                                <input type="text" name="website" class="form-control @error('website') is-invalid @enderror" placeholder="www.companyname.com">
+                                <input type="text" name="website" class="form-control @error('website') is-invalid @enderror" value="{{ $company->website }}">
                                 @error('website')
                                     <div class="text text-danger fs-6 mx-2 mt-2">* {{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                         <div class="text-end mx-4">
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>
                 <div class="card-body">
