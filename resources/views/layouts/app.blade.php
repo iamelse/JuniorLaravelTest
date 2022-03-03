@@ -78,6 +78,9 @@
                                     <a class="dropdown-item" href="{{ route('employee.list') }}">
                                         {{ __('Employee List') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('employee.create') }}">
+                                        {{ __('New Employee') }}
+                                    </a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
