@@ -29,6 +29,17 @@
                                 <td>{{ $employee->has_one_company->name }}</td>
                                 <td>{{ $employee->email }}</td>
                                 <td>{{ $employee->phone }}</td>
+                                <td>
+                                  <div class="col">
+                                    <a class="btn btn-sm" href="{{ route('employee.show', $employee->id) }}"><i class='bx bxs-zoom-in text-primary bx-xs'></i></a>
+                                    <a class="btn btn-sm" href="{{ route('employee.edit', $employee->id) }}"><i class='bx bxs-pencil text-warning bx-xs'></i></a>
+                                    <form action="{{ route('employee.delete', $employee->id) }}" class="d-inline" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-sm" type="submit" onclick="return confirm('Are you sure want to delete this?')"><i class='bx bxs-trash text-danger bx-xs'></i></button>
+                                    </form>
+                                  </div>
+                                </td>
                               </tr>
                             @endforeach
                           </tbody>

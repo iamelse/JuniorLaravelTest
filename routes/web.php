@@ -34,3 +34,9 @@ Route::get('/company/show/{id}', [CompanyController::class, 'show'])->name('comp
 Route::delete('/company/delete/{id}', [CompanyController::class, 'destroy'])->name('company.delete');
 
 Route::get('/employee', [EmployeeController::class, 'index'])->name('employee.list');
+Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+Route::get('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show');
+Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
+Route::get('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
+Route::get('/employee/delete/{id}', [EmployeeController::class, 'delete'])->name('employee.delete');

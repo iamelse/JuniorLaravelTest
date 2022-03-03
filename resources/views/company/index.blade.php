@@ -52,7 +52,6 @@
                                         <button class="btn btn-sm" type="submit" onclick="return confirm('Are you sure want to delete this?')"><i class='bx bxs-trash text-danger bx-xs'></i></button>
                                     </form>
                                   </div>
-
                                 </td>
                               </tr>
                             @endforeach
