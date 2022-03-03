@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -46,19 +47,32 @@ class EmployeeController extends Controller
 
     public function edit($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        return view('employee.edit', [
+            'employee'      => $employee,
+            'companies'     => Company::all()
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'first_name'    => 'required|max:255',
+            'last_name'     => 'required|max:255',
+            'company_id'    => 'required|max:255',
+            'email'         => 'required|max:255',
+            'phone'         => 'required|max:255'
+        ]);
+
+        Employee::where('id', $id)->update($validated);
+        return redirect('/employee')->with('success', '<strong>Success!</strong> Employee has been updated!');
     }
 
     public function destroy($id)
     {
-        $company = Employee::findOrFail($id);
+        $employee = Employee::findOrFail($id);
         
-        $company->delete();
+        $employee->delete();
         
         return redirect('/employee')->with('success', '<strong>Success!</strong> employee has been deleted!');
     }

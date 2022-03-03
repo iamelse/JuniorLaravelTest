@@ -38,5 +38,5 @@ Route::get('/employee/create', [EmployeeController::class, 'create'])->name('emp
 Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
 Route::get('/employee/show/{id}', [EmployeeController::class, 'show'])->name('employee.show');
 Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
-Route::get('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
+Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
 Route::delete('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
