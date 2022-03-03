@@ -35,3 +35,8 @@ if you want generate dummy data just use "php artisan migrate:fresh --seed" then
 
 Image Not Showing
 if this happen, you need change file system driver to public in .env file
+
+## Screenshots
+
+![Company](screenshot/company.png)
+![Employee](screenshot/employee.png)
