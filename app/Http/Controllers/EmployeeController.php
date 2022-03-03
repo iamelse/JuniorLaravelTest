@@ -10,7 +10,6 @@ class EmployeeController extends Controller
     
     public function index()
     {
-        //Employee::latest()->paginate(10)
         return view('employee.index', [
             'employees' => Employee::with('has_one_company')->paginate(10)
         ]);
@@ -28,7 +27,9 @@ class EmployeeController extends Controller
 
     public function show($id)
     {
-        //
+        return view('employee.show', [
+            'employee' => Employee::findOrFail($id)
+        ]);
     }
 
     public function edit($id)
