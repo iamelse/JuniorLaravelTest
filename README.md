@@ -38,5 +38,5 @@ if this happen, you need change file system driver to public in .env file
 
 ## Screenshots
 
-![Company](screenshot/company.png)
-![Employee](screenshot/employee.png)
+![Company](screenshots/company.png)
+![Employee](screenshots/employee.png)
